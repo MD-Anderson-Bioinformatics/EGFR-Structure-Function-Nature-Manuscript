@@ -1,0 +1,113 @@
+dm 'out;clear;log;clear;';
+options center nodate nonumber nostimer nogwindow ls=88 ps=188 formdlim=' ';
+options mprint OVP symbolgen;
+title;
+
+
+
+libname inSAS 'path of your data';
+
+proc contents data=InSAS.SensitivityData_raw_14May2021 varnum;run;
+proc contents data=InSAS.PropSelection varnum;run;
+
+
+data InSAS.SensitivityData_ana_14May2021; set InSAS.SensitivityData_raw_14May2021;
+  if Exon_1 = . then delete;
+
+
+  Erlotinib_average = sum(Erlotinib , F7 , F8)/3;
+  Geftinib_average = sum(Geftinib, F10, F11)/3;
+  AZD3759_average = sum(AZD3759 , F13 , F14)/3;
+  Sapatinib_average = sum(Sapatinib , F16 , F17)/3;
+  Afatinib_average = sum(Afatinib , F19 , F20)/3;
+  Dacomitinib_average = sum(Dacomitinib , F22 , F23)/3;
+  Neratinib_average = sum(Neratinib , F25 , F26)/3;
+  Poziotinib_average = sum(Poziotinib , F28 , F29)/3;
+  Tarlox_TKI_average = sum(Tarlox_TKI , F31 , F32)/3;
+  TAS_6417_average = sum(TAS_6417 , F34 , F35)/3;
+  AZ5104_average = sum(AZ5104 , F37 , F38)/3;
+  TAK_788_average = sum(TAK_788 , F40 , F41)/3;
+  Osimertinib_average = sum(Osimertinib , F43 , F44)/3;
+  Nazartinib_average = sum(Nazartinib , F46 , F47)/3;
+  Olmutinib_average = sum(Olmutinib , F49 , F50)/3;
+  Rocelitinib_average = sum(Rocelitinib , F52 , F53)/3;
+  Naquotinib_average = sum(Naquotinib , F55 , F56)/3;
+  Lazartinib_average = sum(Lazartinib , F58 , F59)/3;
+
+
+
+
+  Exon_18 = 0;
+  Exon_19 = 0;
+  Exon_20 = 0;
+  Exon_21 = 0;
+ 
+  if (Exon_1 = 18) or (Exon_2 = 18) or (Exon_3 = '18') then Exon_18 = 1;
+  if (Exon_1 = 19) or (Exon_2 = 19) or (Exon_3 = '19') then Exon_19 = 1;
+  if (Exon_1 = 20) or (Exon_2 = 20) or (Exon_3 = '20') then Exon_20 = 1;
+  if (Exon_1 = 21) or (Exon_2 = 21) or (Exon_3 = '21') then Exon_21 = 1;
+
+
+  Exon_18c = 'No ';
+  Exon_19c = 'No ';
+  Exon_20c = 'No ';
+  Exon_21c = 'No ';
+ 
+  if (Exon_1 = 18) or (Exon_2 = 18) or (Exon_3 = '18') then Exon_18c = 'Yes';
+  if (Exon_1 = 19) or (Exon_2 = 19) or (Exon_3 = '19') then Exon_19c = 'Yes';
+  if (Exon_1 = 20) or (Exon_2 = 20) or (Exon_3 = '20') then Exon_20c = 'Yes';
+  if (Exon_1 = 21) or (Exon_2 = 21) or (Exon_3 = '21') then Exon_21c = 'Yes';
+
+  Exon_18c2 = 'Exon 18 No ';
+  Exon_19c2 = 'Exon 19 No ';
+  Exon_20c2 = 'Exon 20 No ';
+  Exon_21c2 = 'Exon 21 No ';
+ 
+  if (Exon_1 = 18) or (Exon_2 = 18) or (Exon_3 = '18') then Exon_18c2 = 'Exon 18 Yes';
+  if (Exon_1 = 19) or (Exon_2 = 19) or (Exon_3 = '19') then Exon_19c2 = 'Exon 19 Yes';
+  if (Exon_1 = 20) or (Exon_2 = 20) or (Exon_3 = '20') then Exon_20c2 = 'Exon 20 Yes';
+  if (Exon_1 = 21) or (Exon_2 = 21) or (Exon_3 = '21') then Exon_21c2 = 'Exon 21 Yes';
+
+
+  if Structure_Function_Group = 'Classical-Like' then SFG = 'SFG1';
+  if Structure_Function_Group = 'Ex20' then SFG = 'SFG2';
+  if Structure_Function_Group = 'PVR' then SFG = 'SFG3';
+
+  Structure_Function_Group2 = Structure_Function_Group;
+  if Structure_Function_Group = 'Ex20' then Structure_Function_Group2 = 'Exon-20';
+run;
+
+*Associations between exon based mutations and structure function variable;
+%CrossFreqFisher(data=InSAS.SensitivityData_ana_14May2021, variable=Exon_18 Exon_19 Exon_20 Exon_21
+, nvar=4, byvar=SFG, nlev=3, lev=SFG1 SFG2 SFG3, rowpercent=1, colpercent=0);
+%CrossFreqFisher(data=InSAS.SensitivityData_ana_14May2021, variable=Exon_18 Exon_19 Exon_20 Exon_21
+, nvar=4, byvar=SFG, nlev=3, lev=SFG1 SFG2 SFG3, rowpercent=0, colpercent=1);
+
+
+*Summary of variable importance per Min Jin Ha -3/3/2021;
+data x;
+Input Structure_function_group	Exon_18	Exon_19	Exon_20	Exon_21;
+cards;				
+85	1	0	1	13
+90	1	0	1	8
+83	0	2	0	15
+77	4	1	2	15
+80	4	2	13	2
+83	4	3	9	1
+51	8	27	9	5
+23	17	1	50	9
+82	1	8	1	8
+84	0	2	0	15
+73	10	1	7	9
+73	4	10	4	9
+88	0	1	0	21
+83	4	1	3	10
+85	0	0	0	15
+75	10	1	6	9
+82	5	1	3	9
+73	7	4	7	9
+;
+run;
+proc means data=x n min median max mean std maxdec=2;
+var Structure_function_group	Exon_18	Exon_19	Exon_20	Exon_21;
+run;

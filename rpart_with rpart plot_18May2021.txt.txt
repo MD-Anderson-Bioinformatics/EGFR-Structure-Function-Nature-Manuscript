@@ -1,0 +1,169 @@
+library(survival)
+library(rpart)
+library(rpart.plot)
+library(sas7bdat)
+library(Hmisc)
+library(plotrix)
+survplot<-source('y:/slib/survPlot2.R')
+
+
+###################################################################################
+a<-read.sas7bdat(your data)
+names(a)
+dim(a)
+
+
+split.fun <- function(x, labs, digits, varlen, faclen)
+{
+# replace commas with spaces (needed for strwrap)
+labs <- gsub("", "", labs)
+for(i in 1:length(labs)) {
+# split labs[i] into multiple lines
+labs[i] <- paste(strwrap(labs[i], width = 15), collapse = "\n")
+}
+labs
+}
+
+dev.new(width=8.5, height=7.5)
+par(mfrow=c(3,6))
+par(mfrow=c(3,3))
+
+#==================Erlotinib;
+Fitted1 <- rpart  (Erlotinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted1, main='Erlotinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================Geftinib;
+Fitted2 <- rpart  (Geftinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted2, main='Geftinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================AZD3759;
+Fitted3 <- rpart  (AZD3759_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='AZD3759', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================Sapatinib;
+Fitted4 <- rpart  (Sapatinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted4, main='Sapatinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Afatinib;
+Fitted5 <- rpart  (Afatinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted5, main='Afatinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Dacomitinib;
+Fitted6 <- rpart  (Dacomitinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted6, main='Dacomitinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Neratinib;
+Fitted3 <- rpart  (Neratinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Neratinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Poziotinib;
+Fitted3 <- rpart  (Poziotinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Poziotinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Tarlox_TKI;
+Fitted3 <- rpart  (Tarlox_TKI_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Tarlox_TKI', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================TAS_6417;
+Fitted3 <- rpart  (TAS_6417_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='TAS_6417', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================AZ5104;
+Fitted3 <- rpart  (AZ5104_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='AZ5104', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================TAK_788;
+Fitted3 <- rpart  (TAK_788_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='TAK_788', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================Osimertinib;
+Fitted3 <- rpart  (Osimertinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Osimertinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+#==================Nazartinib;
+Fitted3 <- rpart  (Nazartinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Nazartinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Olmutinib;
+Fitted3 <- rpart  (Olmutinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Olmutinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Rocelitinib;
+Fitted3 <- rpart  (Rocelitinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Rocelitinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Naquotinib;
+Fitted3 <- rpart  (Naquotinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Naquotinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+#==================Lazartinib;
+Fitted3 <- rpart  (Lazartinib_average ~ Exon_18c2 + Exon_19c2 + Exon_20c2 + Exon_21c2 + Structure_Function_Group2, cp=0.001, data=a)
+prp(Fitted3, main='Lazartinib', cex.main=1.5, type=3, extra=1, under=TRUE, under.cex=1,varlen=0, tweak=1,
+fallen.leaves=FALSE, col=1, split.col=1, branch=0.5, branch.col=1, clip.right.labs=FALSE,
+uniform=TRUE, box.palette = "GnYlRd", faclen=0, clip.facs=TRUE, split.fun = split.fun)
+
+
+
+
+
+

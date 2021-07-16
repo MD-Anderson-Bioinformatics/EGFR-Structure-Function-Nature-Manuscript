@@ -1,0 +1,90 @@
+library(survival)
+library(rpart)
+library(sas7bdat)
+library(Hmisc)
+library(plotrix)
+survplot<-source('y:/slib/survPlot2.R')
+
+
+###################################################################################
+a<-read.sas7bdat(your data)
+names(a)
+dim(a)
+
+
+
+#==================Erlotinib;
+Fitted <- rpart  (Erlotinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+
+#==================Geftinib;
+Fitted <- rpart  (Geftinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================AZD3759;
+Fitted <- rpart  (AZD3759_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Sapatinib;
+Fitted <- rpart  (Sapatinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Afatinib;
+Fitted <- rpart  (Afatinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Dacomitinib;
+Fitted <- rpart  (Dacomitinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Neratinib;
+Fitted <- rpart  (Neratinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Poziotinib;
+Fitted <- rpart  (Poziotinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+
+#==================Tarlox_TKI;
+Fitted <- rpart  (Tarlox_TKI_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+
+#==================TAS_6417;
+Fitted <- rpart  (TAS_6417_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================AZ5104;
+Fitted <- rpart  (AZ5104_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================TAK_788;
+Fitted <- rpart  (TAK_788_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Osimertinib;
+Fitted <- rpart  (Osimertinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Nazartinib;
+Fitted <- rpart  (Nazartinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Olmutinib;
+Fitted <- rpart  (Olmutinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Rocelitinib;
+Fitted <- rpart  (Rocelitinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Naquotinib;
+Fitted <- rpart  (Naquotinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
+#==================Lazartinib;
+Fitted <- rpart  (Lazartinib_average ~ Exon_18 + Exon_19 + Exon_20 + Exon_21 + SFG, cp=0.001, data=a)
+round(Fitted$variable.importance/sum(Fitted$variable.importance)*100,digit=0)
+
